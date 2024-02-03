@@ -1,0 +1,123 @@
+==================
+Basic procedure call with id
+==================
+
+@startuml
+hello(foo)
+@enduml
+
+---
+
+(diagram
+  (procedure
+    (procedure_identifier)
+    (block
+      (argument_list
+        (identifier)
+      )
+    )
+  )
+)
+
+==================
+Procedure call with id and description
+==================
+
+@startuml
+hello(foo, "This is foo")
+@enduml
+
+---
+
+(diagram
+  (procedure
+    (procedure_identifier)
+    (block
+      (argument_list
+        (identifier)
+        (string)
+      )
+    )
+  )
+)
+
+==================
+Procedure call with id, description and technology
+==================
+
+@startuml
+System_Ext(foo, "This is foo", "ruby,http")
+@enduml
+
+---
+
+(diagram
+  (procedure
+    (procedure_identifier)
+    (block
+      (argument_list
+        (identifier)
+        (string)
+        (string)
+      )
+    )
+  )
+)
+
+==================
+Procedure call with full arguments
+==================
+
+@startuml
+Container(foo, "This is foo", "ruby,http", "extensive description", "sprite", "tag1,tag2", "https://google.com")
+@enduml
+
+---
+
+(diagram
+  (procedure
+    (procedure_identifier)
+    (block
+      (argument_list
+        (identifier)
+        (string)
+        (string)
+        (string)
+        (string)
+        (string)
+        (string)
+      )
+    )
+  )
+)
+
+==================
+Procedure call with named optional arguments
+==================
+
+@startuml
+System_Ext(merchant, "Merchant", "Sells goods", $sprite="robot", $tags="3rdparty")
+@enduml
+
+---
+
+(diagram
+  (procedure
+    (procedure_identifier)
+    (block
+      (argument_list
+        (identifier)
+        (string)
+        (string)
+        (named_parameter
+          (identifier)
+          (string)
+        )
+        (named_parameter
+          (identifier)
+          (string)
+        )
+      )
+    )
+  )
+)

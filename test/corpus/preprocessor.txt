@@ -1,0 +1,26 @@
+==================
+Preprocessor !include
+==================
+
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://gist.githubusercontent.com/twonegatives/2f786db72b13dc9a163ef63c964993de/raw/628002a1cdd28bd74bc6ad24d58c51d99da28df7/tribe_team_c4.puml
+@enduml
+
+---
+
+(diagram
+  (preprocessor
+    (include)
+    url: (unqouted_string)
+  )
+  (preprocessor
+    (include)
+    url: (unqouted_string)
+  )
+  (preprocessor
+    (include)
+    url: (unqouted_string)
+  )
+)

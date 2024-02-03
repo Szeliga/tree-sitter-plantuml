@@ -1,0 +1,203 @@
+{
+  "name": "plantuml",
+  "word": "identifier",
+  "rules": {
+    "diagram": {
+      "type": "REPEAT",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_startend"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "preprocessor"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "procedure"
+          }
+        ]
+      }
+    },
+    "_startend": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "@startuml"
+        },
+        {
+          "type": "STRING",
+          "value": "@enduml"
+        }
+      ]
+    },
+    "preprocessor": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "!include"
+          },
+          "named": true,
+          "value": "include"
+        },
+        {
+          "type": "STRING",
+          "value": " "
+        },
+        {
+          "type": "FIELD",
+          "name": "url",
+          "content": {
+            "type": "SYMBOL",
+            "name": "unqouted_string"
+          }
+        }
+      ]
+    },
+    "procedure": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          },
+          "named": true,
+          "value": "procedure_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        }
+      ]
+    },
+    "block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "argument_list"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "argument_list": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": " "
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "named_parameter"
+        }
+      ]
+    },
+    "named_parameter": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        }
+      ]
+    },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "\\w+_*"
+    },
+    "string": {
+      "type": "PATTERN",
+      "value": "[\"'][^\"]*?[\"']"
+    },
+    "unqouted_string": {
+      "type": "PATTERN",
+      "value": ".+"
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}
+
