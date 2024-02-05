@@ -14,21 +14,43 @@ module.exports = grammar({
       "@enduml"
     ),
     preprocessor: $ => seq(
-      alias("!include", $.include),
+      "!",
+      choice(
+        $.identifier,
+        "include"
+      ),
       " ",
       field("url", $.unqouted_string)
     ),
-    procedure: $ => seq(alias($.identifier, $.procedure_identifier), $.block),
-    block: $ => seq(
-      '(',
+    procedure: $ => seq(
+      alias($.identifier, $.procedure_identifier),
       $.argument_list,
-      ')'
-    ),
-    argument_list: $ => repeat1(
-      seq(
-        $._expression,
-        optional(seq(",", optional(" ")))
+      optional(" "),
+      optional(
+        choice(
+          $.block,
+          $.link
+        )
       )
+    ),
+
+    block: $=> seq(
+      "{",
+      repeat($.procedure),
+      "}"
+    ),
+
+    link: $ => seq("[", "[", /[^\]]*/, "]", "]"),
+
+    argument_list: $ => seq(
+      "(",
+      repeat1(
+        seq(
+          $._expression,
+          optional(seq(",", optional(" ")))
+        )
+      ),
+      ")"
     ),
     _expression: $ => choice(
       $.identifier,
@@ -36,13 +58,13 @@ module.exports = grammar({
       $.named_parameter,
     ),
     named_parameter: $ => seq(
-      "$",
       $.identifier,
       "=",
       $.string
     ),
-    identifier: $ => /\w+_*/,
-    string: $ => /["'][^"]*?["']/,
-    unqouted_string: $ => /.+/,
+    identifier: $ => /\$?\w+_*/,
+    string: $ => /"[^"]*?"/,
+    single_quote_string: $ => /'[^']*?'/,
+    unqouted_string: $ => /[,\s\[]*.+[,\s\]$]+/,
   }
 });

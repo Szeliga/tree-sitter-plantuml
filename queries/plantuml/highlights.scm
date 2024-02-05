@@ -1,11 +1,16 @@
 [
   "("
   ")"
+  "["
+  "]"
+  "{"
+  "}"
 ] @punctuation.bracket
 
 [
   "@startuml"
   "@enduml"
+  "include"
 ] @keyword
 
 [
@@ -21,10 +26,13 @@
 )
 
 (string) @string
+(single_quote_string) @string
+(unqouted_string) @string
 
 (preprocessor
-  (include) @keyword.import
   url: (unqouted_string) @string.special.url
-)
+) @keyword.import
 
 (identifier) @constant
+
+(link) @string.special.url

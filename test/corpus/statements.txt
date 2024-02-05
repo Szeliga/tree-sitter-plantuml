@@ -11,10 +11,8 @@ hello(foo)
 (diagram
   (procedure
     (procedure_identifier)
-    (block
-      (argument_list
-        (identifier)
-      )
+    (argument_list
+      (identifier)
     )
   )
 )
@@ -32,11 +30,9 @@ hello(foo, "This is foo")
 (diagram
   (procedure
     (procedure_identifier)
-    (block
-      (argument_list
-        (identifier)
-        (string)
-      )
+    (argument_list
+      (identifier)
+      (string)
     )
   )
 )
@@ -54,12 +50,10 @@ System_Ext(foo, "This is foo", "ruby,http")
 (diagram
   (procedure
     (procedure_identifier)
-    (block
-      (argument_list
-        (identifier)
-        (string)
-        (string)
-      )
+    (argument_list
+      (identifier)
+      (string)
+      (string)
     )
   )
 )
@@ -77,16 +71,14 @@ Container(foo, "This is foo", "ruby,http", "extensive description", "sprite", "t
 (diagram
   (procedure
     (procedure_identifier)
-    (block
-      (argument_list
-        (identifier)
-        (string)
-        (string)
-        (string)
-        (string)
-        (string)
-        (string)
-      )
+    (argument_list
+      (identifier)
+      (string)
+      (string)
+      (string)
+      (string)
+      (string)
+      (string)
     )
   )
 )
@@ -104,17 +96,70 @@ System_Ext(merchant, "Merchant", "Sells goods", $sprite="robot", $tags="3rdparty
 (diagram
   (procedure
     (procedure_identifier)
-    (block
-      (argument_list
+    (argument_list
+      (identifier)
+      (string)
+      (string)
+      (named_parameter
         (identifier)
         (string)
+      )
+      (named_parameter
+        (identifier)
         (string)
-        (named_parameter
+      )
+    )
+  )
+)
+
+==================
+Procedure call with block
+==================
+
+@startuml
+Boundary(augmented_banking, "Augmented Banking", $type="DOMAIN") {
+  System(bookkeeping, "Bookkeeping", "Display information on transactions, allow report generation") [["foobar"]]
+  System(connect, "Connect", "Integrations with 3rd party services")
+  System(spend_management, "Spend Management", "Set up budget plan, visualize extra spending, predict user's spending in the future")
+}
+@enduml
+
+---
+
+(diagram
+  (procedure
+    (procedure_identifier)
+    (argument_list
+      (identifier)
+      (string)
+      (named_parameter
+        (identifier)
+        (string)
+      )
+    )
+    (block
+      (procedure
+        (procedure_identifier)
+        (argument_list
           (identifier)
           (string)
+          (string)
         )
-        (named_parameter
+        (link)
+      )
+      (procedure
+        (procedure_identifier)
+        (argument_list
           (identifier)
+          (string)
+          (string)
+        )
+      )
+      (procedure
+        (procedure_identifier)
+        (argument_list
+          (identifier)
+          (string)
           (string)
         )
       )
